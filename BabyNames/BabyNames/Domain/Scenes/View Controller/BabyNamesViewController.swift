@@ -1,7 +1,7 @@
 import UIKit
 
 protocol BabyNamesViewControllerDisplayLogic: AnyObject {
-    func displayLoadedBabies(viewModel: LoadBabies.LoadFromJSON.ViewModel)
+    func displayLoadedBabiesFromJSON(viewModel: LoadBabies.LoadData.ViewModel)
     func displayPopularBaby(viewModel: LoadBabies.LoadPopular.ViewModel)
 }
 
@@ -10,7 +10,6 @@ class BabyNamesViewController: UIViewController {
     @IBOutlet var popularNameView: PopularNameView!
     
     var interactor: BabyInteractor?
-    let vm = BabyNamesVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,17 +31,17 @@ class BabyNamesViewController: UIViewController {
     }
     
     func loadBabiesFromJSON() {
-        interactor?.loadBabies(request: LoadBabies.LoadFromJSON.Request())
+        interactor?.loadBabiesFromJSON(request: LoadBabies.LoadData.Request())
     }
 }
 
 extension BabyNamesViewController: PopularNameViewDelegate {
     func filterBy(gender: Gender) {
-        interactor?.loadBabies(request: LoadBabies.LoadPopular.Request(gender: gender, babies: vm.babiesVM?.babies ?? []))
+        interactor?.loadBaby(request: LoadBabies.LoadPopular.Request(gender: gender, babies: popularNameView.vm.babiesVM?.babies ?? []))
     }
     
     func updateUI() {
-        guard let baby = vm.popularBaby?.baby else {return}
+        guard let baby = popularNameView.vm.popularBaby?.baby else {return}
         
         popularNameView.nameLabel.text = baby.name
         
@@ -87,12 +86,12 @@ extension BabyNamesViewController: PopularNameViewDelegate {
 }
 
 extension BabyNamesViewController: BabyNamesViewControllerDisplayLogic {
-    func displayLoadedBabies(viewModel: LoadBabies.LoadFromJSON.ViewModel) {
-        vm.babiesVM = viewModel
+    func displayLoadedBabiesFromJSON(viewModel: LoadBabies.LoadData.ViewModel) {
+        popularNameView.vm.babiesVM = viewModel
     }
-    
+        
     func displayPopularBaby(viewModel: LoadBabies.LoadPopular.ViewModel) {
-        vm.popularBaby = viewModel
+        popularNameView.vm.popularBaby = viewModel
         updateUI()
     }
 }

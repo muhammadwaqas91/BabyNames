@@ -1,9 +1,9 @@
 import Foundation
 
 enum LoadBabies {
-    enum LoadFromJSON {
+       
+    enum LoadData {
         struct Request {
-            
         }
         
         struct Response {

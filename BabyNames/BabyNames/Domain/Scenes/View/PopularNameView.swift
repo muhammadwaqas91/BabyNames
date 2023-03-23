@@ -13,6 +13,8 @@ class PopularNameView: NibLoadableView, NibLoadable {
     
     weak var delegate: PopularNameViewDelegate?
     
+    let vm = BabyNamesVM()
+    
     override func defaultSetup() {
         super.defaultSetup()
         setupFromNib()
