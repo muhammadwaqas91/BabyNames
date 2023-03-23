@@ -144,6 +144,7 @@
 		AF97B31829CB4BC0007C6C40 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF97B32029CB7A92007C6C40 /* BabyNamesVM.swift */,
 				AF97B31029CB36CD007C6C40 /* PopularNameView.swift */,
 				AF97B31229CB36D8007C6C40 /* PopularNameView.xib */,
 			);
@@ -154,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				AF97B2CE29CB1B16007C6C40 /* BabyNamesViewController.swift */,
-				AF97B32029CB7A92007C6C40 /* BabyNamesVM.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
